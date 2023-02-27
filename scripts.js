@@ -2,6 +2,8 @@ const playsChoice = ["rock","paper","scissors"];
 let wins = 0;
 let losts = 0;
 
+
+
 function getComputerChoice(){
     let randInt = Math.floor(Math.random() * playsChoice.length)
     return playsChoice[randInt];
@@ -28,8 +30,8 @@ function playRound(playerSelection, computerSelection){
 
 function game(){
     for (let i = 0; i < 1; i++) {
-        let sign = window.prompt("What is your play?");
-        console.log(playRound(sign, getComputerChoice()));
+        //let sign = window.prompt("What is your play?");
+        //console.log(playRound(sign, getComputerChoice()));
     }
     if (wins > losts){
         console.log("you win!");
@@ -38,8 +40,17 @@ function game(){
         console.log("you lost");
     }
 }
+//game();
 
-game();
+const btn = document.querySelector('.btn');
+
+btn.addEventListener('click', () => {
+    let x = document.getElementById("btn").value;
+    console.log(x)
+    //console.log(playRound(x,getComputerChoice()));
+
+  });
+
 
 //const playerSelection = "rock";
 //const computerSelection = getComputerChoice();
