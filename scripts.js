@@ -27,7 +27,7 @@ function playRound(playerSelection, computerSelection){
 }
 
 function game(){
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 1; i++) {
         let sign = window.prompt("What is your play?");
         console.log(playRound(sign, getComputerChoice()));
     }
