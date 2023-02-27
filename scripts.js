@@ -1,6 +1,9 @@
 const playsChoice = ["rock","paper","scissors"];
 let wins = 0;
 let losts = 0;
+const content = document.querySelector('#content');
+const message = document.createElement('div');
+
 
 
 
@@ -12,7 +15,8 @@ function getComputerChoice(){
 function playRound(playerSelection, computerSelection){
     playerSelection = playerSelection.toLowerCase();
     if (computerSelection == playerSelection){
-        return "Tie Game!"
+        message.textContent = "Tie Game!";
+        return content.appendChild(message);
     }
     else if (
             (computerSelection == "paper" && playerSelection == "rock") ||
@@ -20,36 +24,40 @@ function playRound(playerSelection, computerSelection){
             (computerSelection == "scissors" && playerSelection == "paper")
             ){
         losts += 1;
-        return `You Lose! ${computerSelection} beats ${playerSelection}`
+        message.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`;
+        return content.appendChild(message);
     }
     else {
         wins += 1;
-        return `You Win! ${playerSelection} beats ${computerSelection}`
+        message.textContent = `You Win! ${playerSelection} beats ${computerSelection}`;
+        return content.appendChild(message);
     }
 }
 
 function game(){
-    for (let i = 0; i < 1; i++) {
-        //let sign = window.prompt("What is your play?");
-        //console.log(playRound(sign, getComputerChoice()));
+    console.log(wins + losts);
+    if (wins > losts && wins + losts == 5){
+        message.textContent = "You Win!";
+        return content.appendChild(message);
+
+
     }
-    if (wins > losts){
-        console.log("you win!");
+    else if (wins < losts && wins + losts == 5){
+        message.textContent = "You Lost!";
+        return content.appendChild(message);
     }
-    else {
-        console.log("you lost");
-    }
+
 }
-//game();
 
-const btn = document.querySelector('.btn');
 
-btn.addEventListener('click', () => {
-    let x = document.getElementById("btn").value;
-    console.log(x)
-    //console.log(playRound(x,getComputerChoice()));
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        playRound(button.value,getComputerChoice());
+        game();
+      });
+});
 
-  });
 
 
 //const playerSelection = "rock";
